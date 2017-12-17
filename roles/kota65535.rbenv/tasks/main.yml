@@ -1,0 +1,10 @@
+---
+- name: Install packages
+  include: packages.yml
+
+- include: for_me.yml
+  when: rbenv_users is not defined
+  static: no
+- include: for_others.yml
+  when: rbenv_users is defined
+  static: no

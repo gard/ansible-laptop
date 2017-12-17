@@ -1,0 +1,21 @@
+---
+- name: add public key
+  become: yes
+  apt_key:
+    id: ACCAF35C
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+- name: add insync repository
+  become: yes
+  apt_repository:
+    repo: deb http://apt.insynchq.com/ubuntu artful non-free contrib
+    state: present
+    update_cache: true
+
+- name: install insync
+  become: yes
+  apt:
+    name: 
+      - sni-qt #to enable applet in tray for 17.10
+      - insync

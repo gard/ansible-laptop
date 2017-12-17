@@ -1,0 +1,12 @@
+- name: install powertop
+  become: yes 
+  apt:
+    name: powertop
+
+- name: install tlp
+  become: yes 
+  apt:
+    name: tlp
+
+- include: insync.yml
+- include: solar-logitech.yml

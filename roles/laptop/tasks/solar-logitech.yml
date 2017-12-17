@@ -1,0 +1,7 @@
+---
+
+- name: install solar logitech 
+  become: yes
+  apt:
+    name:
+      - solaar-gnome3

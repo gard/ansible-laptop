@@ -1,0 +1,34 @@
+- name: Download terraform archive Linux 64 bits
+  get_url:
+    url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
+    dest: /tmp/terraform-{{terraform_version}}.zip
+
+- name: Create Terraform directory
+  become: yes 
+  file:
+    path: "{{terraform_dir}}"
+    state: directory
+    owner: "{{terraform_user}}"
+    group: "{{terraform_user}}"
+  register: terraform_directory
+
+- name: Check terraform version
+  shell: "terraform --version 2>&1 | grep {{terraform_version}}"
+  failed_when: false
+  changed_when: false
+  register: terraform_versions_match
+
+- name: Unarchive Terraform archive
+  unarchive:
+    src: /tmp/terraform-{{terraform_version}}.zip
+    dest: "{{terraform_dir}}"
+    copy: no
+  when: terraform_versions_match.rc != 0 or terraform_directory | changed
+
+- name: Adding terraform command to user path
+  become: yes 
+  file: 
+    src: "{{terraform_dir}}/terraform"
+    dest: /usr/bin/terraform
+    state: link
+  when: terraform_versions_match.rc != 0 or terraform_directory | changed

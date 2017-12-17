@@ -1,0 +1,6 @@
+---
+
+- name: install passwordstore
+  become: yes 
+  apt:
+    name: pass

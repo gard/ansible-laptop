@@ -1,0 +1,11 @@
+---
+
+- name: install telegram ppa
+  become: yes 
+  apt_repository: 
+    repo='ppa:atareao/telegram' 
+    state=present
+- name: install telegram
+  become: yes 
+  apt:
+    name: telegram

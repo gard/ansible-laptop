@@ -1,0 +1,6 @@
+---
+
+- name: install libmysqlclient-dev
+  become: yes 
+  apt:
+    name: libmysqlclient-dev

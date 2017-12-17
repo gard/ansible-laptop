@@ -1,0 +1,10 @@
+---
+
+- include: git.yml
+- include: curl.yml
+- include: java8-oracle.yml
+- include: maven.yml
+- include: pass.yml
+- include: mysql.yml
+- include: sqlite3.yml
+- include: terraform.yml

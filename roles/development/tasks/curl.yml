@@ -1,0 +1,6 @@
+---
+
+- name: install curl
+  become: yes 
+  apt:
+    name: curl

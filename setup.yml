@@ -1,0 +1,21 @@
+- name: setup laptop
+  hosts: localhost
+  vars:
+    rbenv_ruby_versions:
+      - 2.3.6
+      - 2.4.X
+    rbenv_profile_path: ~/.zshrc
+    terraform_version: 0.11.1    
+    terraform_dir: /opt/terraform
+    terraform_user: gard
+  connection: local
+  roles:
+    - development
+    - laptop
+    - gnome
+    - chat
+    - wtanaka.slack
+    - wtanaka.gcloud-sdk
+    - ohmyzsh
+    - kota65535.rbenv
+#    - wtanaka.intellij

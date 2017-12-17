@@ -1,0 +1,27 @@
+- name: install gnome-tweak-tool
+  become: yes 
+  apt:
+    name: gnome-tweak-tool
+
+- name: install gnome-clocks
+  become: yes 
+  apt:
+    name: gnome-clocks
+
+- name: install clipboard manager gpaste
+  become: yes 
+  apt:
+    name: gpaste
+
+- name: install gnome shell extenstion for gpaste
+  become: yes 
+  apt:
+    name: gnome-shell-extensions-gpaste
+
+- name: install openvpn
+  become: yes 
+  apt:
+    name: 
+      - network-manager-openvpn-gnome
+      - network-manager-openvpn
+      - openvpn

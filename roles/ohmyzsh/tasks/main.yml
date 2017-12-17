@@ -1,0 +1,28 @@
+---
+- name: Installing Zsh
+  become: yes 
+  apt: 
+    name: zsh
+
+- stat:
+    path: ~/.oh-my-zsh
+  register: p
+  
+- debug:
+    msg: ".oh-my-zsh exists and is a directory"
+  when: p.stat.isdir is defined and p.stat.isdir
+
+- name: Cloning oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+  register: cloning
+  when: not p.stat.exists
+
+- name: Creating new ~/.zshrc
+  copy:
+    src=~/.oh-my-zsh/templates/zshrc.zsh-template
+    dest=~/.zshrc
+  when: 
+    - not p.stat.exists
+    - cloning|success

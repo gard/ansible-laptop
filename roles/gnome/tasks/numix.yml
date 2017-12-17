@@ -1,0 +1,16 @@
+---
+
+- name: install numix repository
+  become: yes 
+  apt_repository: 
+    repo='ppa:numix/ppa' 
+    state=present
+- name: install numix theme
+  become: yes 
+  apt:
+    name: numix-gtk-theme
+- name: install numix icon theme
+  become: yes 
+  apt:
+    name: numix-icon-theme-circle
+    
