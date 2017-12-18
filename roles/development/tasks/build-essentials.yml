@@ -1,0 +1,24 @@
+---
+
+- name: install core ubuntu development libs
+  become: yes 
+  apt:
+    name: build-essential 
+
+- lineinfile:
+    path: ~/.zshrc
+    regexp: 'kubectl completion'
+    insertafter: 'EOF'
+    line: 'source <(kubectl completion zsh)'
+
+- lineinfile:
+    path: ~/.zshrc
+    regexp: 'google-cloud-sdk/completion.zsh.inc'
+    insertafter: 'EOF'
+    line: 'source /usr/share/google-cloud-sdk/completion.zsh.inc'
+
+- lineinfile:
+    path: ~/.zshrc
+    regexp: 'apache-maven'
+    insertafter: 'EOF'
+    line: 'export PATH=$PATH:/opt/apache-maven-3.3.9/bin/'

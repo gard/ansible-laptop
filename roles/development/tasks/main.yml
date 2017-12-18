@@ -8,3 +8,7 @@
 - include: mysql.yml
 - include: sqlite3.yml
 - include: terraform.yml
+- include: build-essentials.yml
+- include: python.yml
+- include: aws.yml
+- include: mongo.yml
