@@ -8,6 +8,8 @@
     terraform_version: 0.11.1    
     terraform_dir: /opt/terraform
     terraform_user: gard
+    activemq_version: 5.15.2
+    activemq_user: gard
   connection: local
   roles:
     - development

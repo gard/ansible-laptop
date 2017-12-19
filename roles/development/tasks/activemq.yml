@@ -1,0 +1,23 @@
+---
+# Activemq
+
+- stat:
+    path: /opt/apache-activemq-{{ activemq_version }}/bin/activemq
+  register: p
+
+- name: Create activemq directory
+  become: yes 
+  file:
+    path: '/opt/apache-activemq-{{ activemq_version }}'
+    state: directory
+    owner: "{{activemq_user}}"
+    group: "{{activemq_user}}"
+
+- name: Download Apache Activemq
+  get_url: 'url=http://www.apache.org/dist/activemq/{{ activemq_version }}/apache-activemq-{{ activemq_version }}-bin.tar.gz dest=/tmp/apache-activemq-{{ activemq_version }}-bin.tar.gz'
+  when: not p.stat.exists
+
+- name: Untar Maven 
+  shell: chdir=/tmp tar -zxf apache-activemq-{{ activemq_version }}-bin.tar.gz -C /opt
+  when: not p.stat.exists
+ 

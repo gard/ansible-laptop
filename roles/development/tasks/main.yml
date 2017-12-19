@@ -12,3 +12,4 @@
 - include: python.yml
 - include: aws.yml
 - include: mongo.yml
+- include: activemq.yml

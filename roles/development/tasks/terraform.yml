@@ -1,7 +1,14 @@
+- name: Check terraform version
+  shell: "terraform --version 2>&1 | grep {{terraform_version}}"
+  failed_when: false
+  changed_when: false
+  register: terraform_versions_match
+
 - name: Download terraform archive Linux 64 bits
   get_url:
     url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
     dest: /tmp/terraform-{{terraform_version}}.zip
+  when: terraform_versions_match.rc != 0
 
 - name: Create Terraform directory
   become: yes 
@@ -11,12 +18,6 @@
     owner: "{{terraform_user}}"
     group: "{{terraform_user}}"
   register: terraform_directory
-
-- name: Check terraform version
-  shell: "terraform --version 2>&1 | grep {{terraform_version}}"
-  failed_when: false
-  changed_when: false
-  register: terraform_versions_match
 
 - name: Unarchive Terraform archive
   unarchive:
