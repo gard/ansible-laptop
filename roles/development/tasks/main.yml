@@ -13,3 +13,4 @@
 - include: aws.yml
 - include: mongo.yml
 - include: activemq.yml
+- include: golang.yml
