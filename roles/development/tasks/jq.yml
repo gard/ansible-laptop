@@ -1,0 +1,6 @@
+---
+
+- name: install jq for json responses
+  become: yes 
+  apt:
+    name: jq
