@@ -15,3 +15,4 @@
 - include: activemq.yml
 - include: golang.yml
 - include: jq.yml
+- include: sdkman.yml

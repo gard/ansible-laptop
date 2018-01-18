@@ -18,6 +18,16 @@
   apt:
     name: gnome-shell-extensions-gpaste
 
+- name: install gnome shell extenstion for multi-monitor support
+  become: yes
+  apt:
+    name: gnome-shell-extension-multi-monitors
+
+- name: install gnome shell extenstion for legacy tray icons
+  become: yes
+  apt:
+    name: gnome-shell-extension-top-icons-plus
+
 - name: install openvpn
   become: yes 
   apt:
