@@ -1,0 +1,38 @@
+---
+
+- name: Install Docker required software
+  become: yes
+  apt: 
+   name: 
+    - apt-transport-https 
+    - ca-certificates 
+    - curl 
+    - software-properties-common
+
+- name: get key
+  become: yes
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+- name: fingerprint key
+  become: yes
+  command: apt-key fingerprint 0EBFCD88
+
+- name: Add Docker repository
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu zesty stable
+    state: present
+    update_cache: true
+
+- name: Install Docker CE
+  become: yes
+  apt: 
+   name: docker-ce
+
+- name: get the username
+  command: whoami
+  register: whoami
+
+- name: add current user to docker group
+  become: yes
+  shell: usermod -aG docker {{ whoami.stdout }}

@@ -5,7 +5,7 @@
       - 2.3.6
       - 2.4.X
     rbenv_profile_path: ~/.zshrc
-    terraform_version: 0.11.1    
+    terraform_version: 0.11.2    
     terraform_dir: /opt/terraform
     terraform_user: gard
     activemq_version: 5.15.2
