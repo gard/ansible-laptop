@@ -8,6 +8,7 @@
   get_url:
     url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
     dest: /tmp/terraform-{{terraform_version}}.zip
+    validate_certs: false
   when: terraform_versions_match.rc != 0
 
 - name: Create Terraform directory
